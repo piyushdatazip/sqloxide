@@ -57,6 +57,14 @@ jobs:
       - name: Set up QEMU
         if: matrix.platform == 'linux'
         uses: docker/setup-qemu-action@v2
+      - name: Install rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+      - name: Install Rust aarch64-apple-darwin target
+        if: matrix.platform == 'macos'
+        run: rustup target add aarch64-apple-darwin
 
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.10.2
