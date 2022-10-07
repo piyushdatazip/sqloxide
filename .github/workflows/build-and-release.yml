@@ -63,9 +63,16 @@ jobs:
         with:
           toolchain: stable
           override: true
+
       - name: Install Rust aarch64-apple-darwin target
         if: matrix.platform == 'macos'
         run: rustup target add aarch64-apple-darwin
+
+      - name: Run image
+        uses: abatilo/actions-poetry@v2
+      - name: Install package deps
+        run: |
+          poetry install
 
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.10.2
