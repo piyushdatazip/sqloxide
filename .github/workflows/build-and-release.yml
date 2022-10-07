@@ -70,7 +70,7 @@ jobs:
           path: ./wheelhouse/*.whl
 
   publish-wheels:
-    needs: build-and-test-python
+    needs: build
     runs-on: ubuntu-latest
     permissions:
       contents: write
